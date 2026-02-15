@@ -88,7 +88,7 @@ const App: React.FC = () => {
         <p className="text-slate-500 mt-2 text-sm font-medium">Precision temperature blending made simple.</p>
       </header>
 
-      <main className="w-full max-w-md space-y-4">
+      <main className="w-full max-w-md space-y-3">
         {/* Input Card */}
         <section className="bg-white rounded-3xl shadow-xl p-6 pt-2 pb-2 border border-slate-100">
           <h2 className="text-lg font-bold mb-2 text-slate-800 flex items-center gap-2">
@@ -99,7 +99,7 @@ const App: React.FC = () => {
             label="Target Volume"
             value={settings.targetVolume}
             min={10}
-            max={2000}
+            max={1000}
             step={10}
             unit="ml"
             accentColor="indigo"

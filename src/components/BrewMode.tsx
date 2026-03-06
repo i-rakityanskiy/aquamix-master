@@ -1,23 +1,41 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { TEA_RECIPES } from '../data/teaRecipes';
 import InputSlider from './InputSlider';
 import { AquaIcon, LeafIcon } from './Icons';
+import { BrewSettings } from '../types';
 
 interface BrewModeProps {
   onToggleMode: () => void;
 }
 
-const BrewMode: React.FC<BrewModeProps> = ({ onToggleMode }) => {
-  const [teaType, setTeaType] = useState<string>('Black');
-  const [volume, setVolume] = useState<number>(250);
+const STORAGE_KEY = 'brew_preferences';
 
-  const recipe = useMemo(() => TEA_RECIPES[teaType], [teaType]);
+const BrewMode: React.FC<BrewModeProps> = ({ onToggleMode }) => {
+  // --- State ---
+  const [settings, setSettings] = useState<BrewSettings>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {
+      teaType: 'Black',
+      targetVolume: 250
+    };
+  });
+
+  // --- Persistence ---
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  }, [settings]);
+
+  const recipe = useMemo(() => TEA_RECIPES[settings.teaType], [settings]);
 
   const teaAmount = useMemo(() => {
-    const minGrams = ((volume / 100) * recipe.grams_per_100ml_min).toFixed(1);
-    const maxGrams = ((volume / 100) * recipe.grams_per_100ml_max).toFixed(1);
+    const minGrams = ((settings.targetVolume / 100) * recipe.grams_per_100ml_min).toFixed(1);
+    const maxGrams = ((settings.targetVolume / 100) * recipe.grams_per_100ml_max).toFixed(1);
     return `${minGrams}g – ${maxGrams}g`;
-  }, [volume, recipe]);
+  }, [settings, recipe]);
+
+  const handleUpdate = (key: keyof BrewSettings, val: number | string) => {
+    setSettings(prev => ({ ...prev, [key]: val }));
+  };
 
   return (
     <div className="bg-brew min-h-screen flex flex-col items-center p-4 md:p-8 transition-colors duration-700 relative overflow-hidden">
@@ -56,8 +74,8 @@ const BrewMode: React.FC<BrewModeProps> = ({ onToggleMode }) => {
             <div className="relative">
               <select
                 id="tea-type"
-                value={teaType}
-                onChange={(e) => setTeaType(e.target.value)}
+                value={settings.teaType}
+                onChange={(e) => handleUpdate('teaType', e.target.value)}
                 className="w-full bg-amber-50 border border-amber-200 text-amber-900 text-sm rounded-xl focus:ring-amber-500 focus:border-amber-500 block p-3 font-medium transition-all appearance-none"
               >
                 {Object.keys(TEA_RECIPES).map((type) => (
@@ -76,13 +94,13 @@ const BrewMode: React.FC<BrewModeProps> = ({ onToggleMode }) => {
 
           <InputSlider
             label="Target Volume"
-            value={volume}
+            value={settings.targetVolume}
             min={100}
             max={1000}
             step={50}
             unit="ml"
             accentColor="orange"
-            onChange={setVolume}
+            onChange={(v) => handleUpdate('targetVolume', v)}
           />
 
           <div className="mt-4 p-4 bg-amber-50 rounded-2xl border border-amber-100 text-center">

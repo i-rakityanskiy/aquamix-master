@@ -21,6 +21,11 @@ export interface MixSettings {
   targetVolume: number;
 }
 
+export interface BrewSettings {
+  teaType: string;
+  targetVolume: number;
+}
+
 export interface MixResult {
   hotVolume: number;
   coldVolume: number;

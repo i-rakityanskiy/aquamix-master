@@ -52,18 +52,26 @@ const BrewMode: React.FC<BrewModeProps> = ({ onToggleMode }) => {
           </h2>
 
           <div className="mb-6">
-            <label className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block">Tea Variety</label>
-            <select
-              value={teaType}
-              onChange={(e) => setTeaType(e.target.value)}
-              className="w-full bg-amber-50 border border-amber-200 text-amber-900 text-sm rounded-xl focus:ring-amber-500 focus:border-amber-500 block p-3 font-medium transition-all"
-            >
-              {Object.keys(TEA_RECIPES).map((type) => (
-                <option key={type} value={type}>
-                  {TEA_RECIPES[type].tea_type}
-                </option>
-              ))}
-            </select>
+            <label className="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2 block" htmlFor="tea-type">Tea Variety</label>
+            <div className="relative">
+              <select
+                id="tea-type"
+                value={teaType}
+                onChange={(e) => setTeaType(e.target.value)}
+                className="w-full bg-amber-50 border border-amber-200 text-amber-900 text-sm rounded-xl focus:ring-amber-500 focus:border-amber-500 block p-3 font-medium transition-all appearance-none"
+              >
+                {Object.keys(TEA_RECIPES).map((type) => (
+                  <option key={type} value={type}>
+                    {TEA_RECIPES[type].tea_type}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-amber-900">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
 
           <InputSlider

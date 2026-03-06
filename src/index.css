@@ -4,3 +4,15 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #f8fafc;
 }
+
+.bg-brew {
+  background-image: url('./assets/brew_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-aqua-mix {
+  background-image: linear-gradient(135deg, #e0fcf9 0%, #b2d8f9 100%);
+  background-attachment: fixed;
+}

@@ -3,13 +3,13 @@ import { AppMode } from './types';
 import WaterMixMode from './components/WaterMixMode';
 import BrewMode from './components/BrewMode';
 
-const MODE_STORAGE_KEY = 'aquamix_mode';
+const MODE_STORAGE_KEY = 'teacraft_mode';
 
 const App: React.FC = () => {
   // --- State ---
   const [mode, setMode] = useState<AppMode>(() => {
     const saved = localStorage.getItem(MODE_STORAGE_KEY);
-    return (saved as AppMode) || AppMode.AQUA_MIX;
+    return (saved as AppMode) || AppMode.BREW_MODE;
   });
 
   // --- Persistence ---

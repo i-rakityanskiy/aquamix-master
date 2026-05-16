@@ -1,3 +1,7 @@
+# TeaCraft Pro
+
+Precision tea brewing and water mixing calculator.
+
 ## Run Locally
 
 **Prerequisites:**  Node.js

@@ -27,9 +27,9 @@ export default defineConfig(() => {
           navigateFallback: 'index.html',
         },
         manifest: {
-          name: 'AquaMix Master',
-          short_name: 'AquaMix Master',
-          description: 'A precision calculator for mixing hot and cold water to achieve exact temperatures and volumes. Perfect for tea brewing and culinary needs.',
+          name: 'TeaCraft Pro',
+          short_name: 'TeaCraft Pro',
+          description: 'A precision brewing companion for tea enthusiasts. Calculate exact water ratios and temperatures to achieve the perfect steep every time.',
           start_url: "/",
           display: 'standalone',
           theme_color: '#ffffff',

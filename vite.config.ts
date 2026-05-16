@@ -45,6 +45,12 @@ export default defineConfig(() => {
               src: "web-app-manifest-192x192.png",
               sizes: "192x192",
               type: "image/png",
+              purpose: "any"
+            },
+            {
+              src: "maskable_icon_x192.png",
+              sizes: "192x192",
+              type: "image/png",
               purpose: "maskable"
             },
             {
@@ -52,6 +58,12 @@ export default defineConfig(() => {
               sizes: "512x512",
               type: "image/png",
               purpose: "any"
+            },
+            {
+              src: "maskable_icon_x512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "maskable"
             }
           ]
         },

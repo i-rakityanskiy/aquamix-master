@@ -32,8 +32,8 @@ export default defineConfig(() => {
           description: 'A precision brewing companion for tea enthusiasts. Calculate exact water ratios and temperatures to achieve the perfect steep every time.',
           start_url: "/",
           display: 'standalone',
-          theme_color: '#ffffff',
-          background_color: '#ffffff',
+          theme_color: '#fffbeb',
+          background_color: '#fffbeb',
           icons: [
             {
               src: 'favicon.svg',

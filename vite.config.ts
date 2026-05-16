@@ -34,6 +34,20 @@ export default defineConfig(() => {
           display: 'standalone',
           theme_color: '#fffbeb',
           background_color: '#fffbeb',
+          screenshots: [
+            {
+              src: "/screenshot-mobile.webp",
+              sizes: "1080x1920",
+              type: "image/webp",
+              form_factor: "narrow"
+            },
+            {
+              src: "/screenshot-desktop.webp",
+              sizes: "1920x1080",
+              type: "image/webp",
+              form_factor: "wide"
+            }
+          ],
           icons: [
             {
               src: 'favicon.svg',
